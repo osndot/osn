@@ -1,0 +1,36 @@
+import { describe, it, expect } from "vitest";
+import plugin from "../index.js";
+
+describe("@osndot/plugin-git", () => {
+    it("should have correct metadata", () => {
+        expect(plugin.name).toBe("@osndot/plugin-git");
+        expect(plugin.version).toBe("0.1.0");
+        expect(plugin.description).toBe("Git integration for OSN");
+    });
+
+    it("should register git:status and git:log commands", () => {
+        expect(plugin.commands).toBeDefined();
+        expect(plugin.commands).toHaveLength(2);
+
+        const commandNames = plugin.commands!.map((c) => c.name);
+        expect(commandNames).toContain("git:status");
+        expect(commandNames).toContain("git:log");
+    });
+
+    it("should provide descriptions for all commands", () => {
+        for (const cmd of plugin.commands!) {
+            expect(cmd.description).toBeTruthy();
+        }
+    });
+
+    it("should have handlers for all commands", () => {
+        for (const cmd of plugin.commands!) {
+            expect(typeof cmd.handler).toBe("function");
+        }
+    });
+
+    it("should have onLoad lifecycle hook", () => {
+        expect(plugin.onLoad).toBeDefined();
+        expect(typeof plugin.onLoad).toBe("function");
+    });
+});

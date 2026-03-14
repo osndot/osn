@@ -1,0 +1,49 @@
+{
+    "name": "@osndot/plugin-git",
+    "version": "0.1.0",
+    "description": "Git integration plugin for the OSN CLI platform",
+    "author": "osndot",
+    "license": "MIT",
+    "type": "module",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/osndot/osn.git",
+        "directory": "packages/plugin-git"
+    },
+    "homepage": "https://github.com/osndot/osn/tree/main/packages/plugin-git#readme",
+    "bugs": {
+        "url": "https://github.com/osndot/osn/issues"
+    },
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "import": "./dist/index.js",
+            "types": "./dist/index.d.ts"
+        }
+    },
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "tsup",
+        "dev": "tsup --watch",
+        "test": "vitest run",
+        "lint": "tsc --noEmit"
+    },
+    "dependencies": {
+        "@osndot/sdk": "workspace:*"
+    },
+    "devDependencies": {
+        "@types/node": "^22.13.4"
+    },
+    "keywords": [
+        "osn",
+        "plugin",
+        "git",
+        "version-control"
+    ],
+    "engines": {
+        "node": ">=20.0.0"
+    }
+}

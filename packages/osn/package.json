@@ -1,0 +1,61 @@
+{
+    "name": "@osndot/osn",
+    "version": "0.1.0",
+    "description": "OSN — Modern, plugin-driven developer runtime and CLI platform",
+    "author": "osndot",
+    "license": "MIT",
+    "type": "module",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/osndot/osn.git",
+        "directory": "packages/osn"
+    },
+    "homepage": "https://github.com/osndot/osn/tree/main/packages/osn#readme",
+    "bugs": {
+        "url": "https://github.com/osndot/osn/issues"
+    },
+    "bin": {
+        "osn": "./dist/cli.js"
+    },
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "import": "./dist/index.js",
+            "types": "./dist/index.d.ts"
+        }
+    },
+    "files": [
+        "dist",
+        "schemas"
+    ],
+    "scripts": {
+        "build": "tsup",
+        "dev": "tsup --watch",
+        "test": "vitest run",
+        "lint": "tsc --noEmit"
+    },
+    "dependencies": {
+        "commander": "^13.1.0",
+        "chalk": "^5.4.1",
+        "ora": "^8.2.0",
+        "inquirer": "^12.4.0",
+        "consola": "^3.4.0",
+        "zod": "^3.24.2"
+    },
+    "devDependencies": {
+        "@types/node": "^22.13.4"
+    },
+    "keywords": [
+        "osn",
+        "cli",
+        "developer-tools",
+        "plugin",
+        "task-runner",
+        "monorepo",
+        "typescript"
+    ],
+    "engines": {
+        "node": ">=20.0.0"
+    }
+}
