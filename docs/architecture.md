@@ -1,12 +1,12 @@
 # Architecture
 
-This document describes the internal architecture of the OSN CLI platform, including the package structure, data flow, plugin system, and configuration management.
+This document describes the internal architecture of the **osn.** CLI platform, including the package structure, data flow, plugin system, and configuration management.
 
 ## System Overview
 
 ```
                     +-----------------------------------------+
-                    |              OSN CLI                     |
+                    |            osn. CLI                     |
                     |                                         |
                     |  +----------+ +--------+ +-----------+  |
                     |  | Commander| | Config | |  Plugin   |  |

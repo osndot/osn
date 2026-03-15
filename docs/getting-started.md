@@ -1,6 +1,6 @@
 # Getting Started
 
-This guide covers installation, project initialization, and everyday usage of the OSN CLI.
+This guide covers installation, project initialization, and everyday usage of the **osn.** CLI.
 
 ## Prerequisites
 

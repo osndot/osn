@@ -1,12 +1,12 @@
-# OSN Documentation
+# osn. Documentation
 
-Complete reference documentation for the OSN CLI platform.
+Complete reference documentation for the **osn.** CLI platform.
 
 ## Guides
 
 - [Getting Started](./getting-started.md) -- Installation, project initialization, and first steps
 - [Architecture](./architecture.md) -- System design, package structure, and data flow
-- [Plugin Development](./plugin-development.md) -- Building custom plugins with the OSN SDK
+- [Plugin Development](./plugin-development.md) -- Building custom plugins with the **osn.** SDK
 - [Configuration Reference](./configuration.md) -- Complete `.osn/project.json` schema reference
 
 ## Additional Resources

@@ -1,10 +1,10 @@
 # Plugin Development Guide
 
-This guide covers everything needed to build, test, and publish custom plugins for the OSN CLI platform.
+This guide covers everything needed to build, test, and publish custom plugins for the **osn.** CLI platform.
 
 ## Overview
 
-An OSN plugin is a standard npm package that exports a plugin definition created with the `definePlugin()` factory function from `@osndot/sdk`. Plugins can register CLI commands, hook into task lifecycle events, and access a shared context.
+An **osn.** plugin is a standard npm package that exports a plugin definition created with the `definePlugin()` factory function from `@osndot/sdk`. Plugins can register CLI commands, hook into task lifecycle events, and access a shared context.
 
 ## Project Setup
 
@@ -69,7 +69,7 @@ Your `package.json` should follow these conventions:
 }
 ```
 
-For official plugins within the OSN monorepo, use the `@osndot` scope and the `workspace:*` protocol for the SDK dependency.
+For official plugins within the **osn.** monorepo, use the `@osndot` scope and the `workspace:*` protocol for the SDK dependency.
 
 ## Creating a Plugin
 

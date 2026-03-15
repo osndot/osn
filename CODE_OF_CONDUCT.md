@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This Code of Conduct establishes expectations for participation in the OSN project and its community. It applies to all project spaces, including the issue tracker, pull requests, discussions, and any other communication channels associated with this project.
+This Code of Conduct establishes expectations for participation in the **osn.** project and its community. It applies to all project spaces, including the issue tracker, pull requests, discussions, and any other communication channels associated with this project.
 
 The goal is to maintain a productive, respectful, and inclusive environment for everyone who contributes, regardless of experience level, background, or identity.
 

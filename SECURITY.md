@@ -2,7 +2,7 @@
 
 ## Supported Versions
 
-The following versions of OSN receive security updates:
+The following versions of **osn.** receive security updates:
 
 | Version | Supported |
 |---------|-----------|
@@ -14,7 +14,7 @@ Only the latest release within each supported major/minor version line receives 
 
 ## Reporting a Vulnerability
 
-If you discover a security vulnerability in OSN, please report it responsibly. **Do not open a public issue.**
+If you discover a security vulnerability in **osn.**, please report it responsibly. **Do not open a public issue.**
 
 ### How to Report
 
@@ -59,16 +59,16 @@ Third-party plugins developed outside of this repository are not covered by this
 
 ## Security Practices
 
-The OSN project follows these security practices:
+The **osn.** project follows these security practices:
 
 - **Dependency Management**: Dependencies are regularly audited using `pnpm audit` and kept up to date.
 - **Input Validation**: User-provided configuration is validated at runtime using Zod schemas.
 - **Principle of Least Privilege**: Plugins operate within a sandboxed context and do not have access to internal CLI state.
-- **No Credential Storage**: OSN does not store, transmit, or process user credentials or sensitive tokens.
+- **No Credential Storage**: **osn.** does not store, transmit, or process user credentials or sensitive tokens.
 - **CI/CD Security**: Automated pipelines enforce build, test, and type-check gates before any release.
 
 ---
 
 ## Acknowledgments
 
-We appreciate the efforts of security researchers and community members who help keep OSN safe. Responsible disclosures will be acknowledged in release notes unless the reporter requests otherwise.
+We appreciate the efforts of security researchers and community members who help keep **osn.** safe. Responsible disclosures will be acknowledged in release notes unless the reporter requests otherwise.

@@ -1,6 +1,14 @@
-# Contributing to OSN
+<div align="center">
+<picture>
+  <img
+    alt="osn. contributing"
+    src="assets/osn-contributing.png"
+    width="100%"
+  />
+</picture>
+</div>
 
-Thank you for considering a contribution to OSN. This document outlines the process for contributing to the project, from setting up your development environment to submitting a pull request.
+Thank you for considering a contribution to **osn.** This document outlines the process for contributing to the project, from setting up your development environment to submitting a pull request.
 
 ---
 
@@ -38,7 +46,7 @@ All contributors are expected to follow the [Code of Conduct](CODE_OF_CONDUCT.md
 1. Fork the repository on GitHub.
 2. Clone your fork locally:
    ```bash
-   git clone https://github.com/<your-username>/osn.git
+   git clone https://github.com/osndot/osn.git
    cd osn
    ```
 3. Install dependencies:

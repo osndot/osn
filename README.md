@@ -1,10 +1,36 @@
-# osn.
+<div align="center">
+<picture>
+  <img
+    alt="osn. banner"
+    src="assets/osn-banner.png"
+    width="100%"
+  />
+</picture>
 
-***NOTE: This project is still in the draft stage, meaning that at this point, the entire project is available in its raw form, not yet styled in the "osn." design language.***
+<br />
+<br />
+<h4>Built in Public. Engineered for Impact.</h4>
+<br />
 
-**Modern, plugin-driven developer runtime and CLI platform.**
+  <a href="https://github.com/osndot">
+    <img alt="Official osn. project" src="https://img.shields.io/badge/Official%20osn.%20project-000000.svg?style=for-the-badge&labelColor=000">
+  </a>
+  <a href="https://github.com/osndot">
+    <img alt="Work In Progress" src="https://img.shields.io/badge/Work%20In%20Progress-000000.svg?style=for-the-badge&labelColor=000">
+  </a>
+  <a href="LICENSE">
+    <img alt="License" src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge&labelColor=000">
+  </a>
+  <a href="https://www.typescriptlang.org/">
+    <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white&labelColor=000">
+  </a>
 
-OSN is a modular command-line tool built for modern TypeScript projects. It provides a lightweight task runner, a powerful plugin system, and an extensible architecture designed for teams and individual developers alike.
+</div>
+
+<br />
+<br />
+
+**osn** is a modular command-line tool built for modern TypeScript projects. It provides a lightweight task runner, a powerful plugin system, and an extensible architecture designed for teams and individual developers alike.
 
 ## Features
 
@@ -76,7 +102,7 @@ Tasks specified in `dependsOn` are executed automatically in order before the ta
 
 ## Plugins
 
-OSN ships with three official plugins:
+**osn.** ships with three official plugins:
 
 | Plugin | Package | Description |
 |--------|---------|-------------|
@@ -115,7 +141,7 @@ osn env list
 
 | Command | Description |
 |---------|-------------|
-| `osn init` | Initialize a new OSN project |
+| `osn init` | Initialize a new osn. project |
 | `osn run <task>` | Execute a defined task |
 | `osn plugin add <name>` | Install and register a plugin |
 | `osn plugin list` | List installed plugins |
@@ -129,7 +155,7 @@ osn env list
 
 ## Developing Plugins
 
-Plugins are npm packages that export a default plugin definition using the OSN SDK:
+Plugins are npm packages that export a default plugin definition using the **osn.** SDK:
 
 ```typescript
 import { definePlugin } from "@osndot/sdk";

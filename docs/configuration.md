@@ -4,7 +4,7 @@ Complete reference for the `.osn/project.json` configuration file.
 
 ## Overview
 
-Every OSN project has a configuration file at `.osn/project.json`. This file is created by `osn init` and managed by the CLI. It is validated at runtime using Zod schemas, ensuring that invalid configurations are caught immediately with clear error messages.
+Every **osn.** project has a configuration file at `.osn/project.json`. This file is created by `osn init` and managed by the CLI. It is validated at runtime using Zod schemas, ensuring that invalid configurations are caught immediately with clear error messages.
 
 A JSON Schema file is distributed with the `@osndot/osn` package for IDE autocomplete and validation support.
 
