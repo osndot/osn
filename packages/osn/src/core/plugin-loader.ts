@@ -46,7 +46,7 @@ export async function loadPlugins(cwd?: string): Promise<LoadedPlugin[]> {
     try {
         const entries = await readdir(scopePath, { withFileTypes: true });
         const pluginDirs = entries
-            .filter((entry) => entry.isDirectory() && entry.name.startsWith("plugin-"))
+            .filter((entry) => (entry.isDirectory() || entry.isSymbolicLink()) && entry.name.startsWith("plugin-"))
             .map((entry) => entry.name);
 
         for (const dir of pluginDirs) {
