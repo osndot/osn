@@ -1,6 +1,6 @@
 {
     "name": "@osndot/osn",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "OSN — Modern, plugin-driven developer runtime and CLI platform",
     "author": "osndot",
     "license": "MIT",

@@ -1,6 +1,6 @@
 {
     "name": "@osndot/plugin-docker",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "Docker integration plugin for the OSN CLI platform",
     "author": "osndot",
     "license": "MIT",
