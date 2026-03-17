@@ -54,6 +54,10 @@ export function definePlugin(options: DefinePluginOptions): OsnPlugin {
         name: options.name,
         version: options.version,
         description: options.description,
+        _setConfig(cfg: Record<string, unknown>) {
+            // Update the context configuration when provided by OSN CLI
+            context.config = cfg;
+        },
     };
 
     /**

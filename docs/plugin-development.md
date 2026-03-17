@@ -21,12 +21,25 @@ pnpm add -D typescript tsup vitest @types/node
 
 ```json
 {
-  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
+    "target": "ES2022",
+    "module": "Node16",
+    "moduleResolution": "Node16",
+    "lib": ["ES2022"],
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
     "outDir": "dist",
-    "rootDir": "src"
+    "rootDir": "src",
+    "isolatedModules": true
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
 }
 ```
 
@@ -344,6 +357,19 @@ pnpm test
 
 ```bash
 npm publish --access public
+```
+
+### Peer Dependencies
+
+When publishing your plugin, make sure your build output references the OSN SDK properly in your `package.json`. You should set it as a `peerDependency`:
+
+```json
+{
+  "name": "@my-org/plugin-custom",
+  "peerDependencies": {
+    "@osndot/sdk": ">=0.1.0"
+  }
+}
 ```
 
 ### Plugin Naming Convention

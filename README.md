@@ -135,6 +135,23 @@ osn docker ps
 osn env list
 ```
 
+### Plugin Configuration
+
+You can provide configuration to plugins directly in `.osn/project.json`:
+
+```json
+{
+  "plugins": [
+    {
+      "name": "@osndot/plugin-docker",
+      "config": {
+        "imageName": "my-custom-app-image"
+      }
+    }
+  ]
+}
+```
+
 ---
 
 ## CLI Reference

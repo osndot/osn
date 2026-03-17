@@ -2,26 +2,17 @@ import { readdir } from "node:fs/promises";
 import { join } from "node:path";
 import { existsSync } from "node:fs";
 import { logger } from "../utils/logger.js";
+import type { OsnPlugin, PluginCommand } from "@osndot/sdk";
+import type { PluginEntry } from "./config.js";
 
 // ─── Types ───
 
-export interface PluginCommand {
-    name: string;
-    description?: string;
-    pluginName?: string;
-    handler?: () => Promise<void> | void;
-}
-
-export interface LoadedPlugin {
-    name: string;
-    version?: string;
-    description?: string;
-    commands?: PluginCommand[];
-    onLoad?: () => Promise<void> | void;
-    onUnload?: () => Promise<void> | void;
-    onBeforeTask?: (taskName: string) => Promise<void> | void;
-    onAfterTask?: (taskName: string, success: boolean) => Promise<void> | void;
-}
+/**
+ * A loaded plugin with resolved commands and lifecycle hooks.
+ * Re-exports the SDK OsnPlugin type for compatibility.
+ */
+export type LoadedPlugin = OsnPlugin;
+export type { PluginCommand };
 
 // ─── Plugin Loader ───
 
@@ -32,8 +23,14 @@ const OSNDOT_SCOPE = "@osndot";
  * Discover and dynamically load all installed OSN plugins.
  * Scans node_modules/@osndot/plugin-* for valid plugins.
  * Supports both sync and async plugin setups.
+ *
+ * @param cwd - The base directory to scan from (defaults to process.cwd())
+ * @param pluginConfigs - Optional plugin configurations from project.json
  */
-export async function loadPlugins(cwd?: string): Promise<LoadedPlugin[]> {
+export async function loadPlugins(
+    cwd?: string,
+    pluginConfigs?: PluginEntry[]
+): Promise<LoadedPlugin[]> {
     const basePath = cwd ?? process.cwd();
     const scopePath = join(basePath, "node_modules", OSNDOT_SCOPE);
     const loadedPlugins: LoadedPlugin[] = [];
@@ -41,6 +38,16 @@ export async function loadPlugins(cwd?: string): Promise<LoadedPlugin[]> {
     // If @osndot scope directory doesn't exist, no plugins are installed
     if (!existsSync(scopePath)) {
         return loadedPlugins;
+    }
+
+    // Build config lookup map
+    const configMap = new Map<string, Record<string, unknown>>();
+    if (pluginConfigs) {
+        for (const entry of pluginConfigs) {
+            if (entry.config) {
+                configMap.set(entry.name, entry.config as Record<string, unknown>);
+            }
+        }
     }
 
     try {
@@ -77,6 +84,11 @@ export async function loadPlugins(cwd?: string): Promise<LoadedPlugin[]> {
                         onAfterTask: pluginDef.onAfterTask,
                     };
 
+                    // Inject plugin-specific config if available
+                    if (pluginDef._setConfig && configMap.has(pluginPackageName)) {
+                        pluginDef._setConfig(configMap.get(pluginPackageName)!);
+                    }
+
                     // Call lifecycle hook
                     if (plugin.onLoad) {
                         await plugin.onLoad();
@@ -101,4 +113,3 @@ export async function loadPlugins(cwd?: string): Promise<LoadedPlugin[]> {
 
     return loadedPlugins;
 }
-

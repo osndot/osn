@@ -34,4 +34,17 @@ describe("loadPlugins", () => {
         const plugins = await loadPlugins(testDir);
         expect(plugins).toEqual([]);
     });
+
+    it("should build config lookup map from plugin entries", async () => {
+        await mkdir(join(testDir, "node_modules", "@osndot"), { recursive: true });
+
+        const configs = [
+            { name: "@osndot/plugin-example", config: { key: "value" } },
+            { name: "@osndot/plugin-other" },
+        ];
+        const plugins = await loadPlugins(testDir, configs);
+
+        // No actual plugins to load, but the function should not crash with config entries
+        expect(plugins).toEqual([]);
+    });
 });

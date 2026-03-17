@@ -5,20 +5,19 @@ import { existsSync } from "node:fs";
 
 export default definePlugin({
     name: "@osndot/plugin-env",
-    version: "0.1.0",
+    version: "0.2.0",
     description: "Environment configuration management for OSN",
     setup(ctx) {
-        const envFilePath = join(ctx.cwd, ".env");
-
         return {
             commands: [
                 {
                     name: "env:list",
                     description: "List all environment variables from .env file",
                     handler: async () => {
+                        const envFilePath = join(ctx.cwd, ".env");
                         if (!existsSync(envFilePath)) {
                             ctx.logger.warn("No .env file found in this directory.");
-                            ctx.logger.info("Run 'osn run env:init' to create one.");
+                            ctx.logger.info("Run 'osn env init' to create one.");
                             return;
                         }
 
@@ -45,6 +44,7 @@ export default definePlugin({
                     name: "env:init",
                     description: "Create a .env file with defaults",
                     handler: async () => {
+                        const envFilePath = join(ctx.cwd, ".env");
                         if (existsSync(envFilePath)) {
                             ctx.logger.warn(".env file already exists.");
                             return;

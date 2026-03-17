@@ -1,7 +1,7 @@
 import { Command } from "commander";
 import chalk from "chalk";
 import ora from "ora";
-import { exec } from "node:child_process";
+import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import { loadConfig } from "../core/config.js";
 import { writeConfigSafe } from "../core/config-writer.js";
@@ -9,14 +9,9 @@ import { logger } from "../utils/logger.js";
 import { join } from "node:path";
 import { readFile } from "node:fs/promises";
 
-const execAsync = promisify(exec);
+const execFileAsync = promisify(execFile);
 
-/**
- * Get platform-appropriate shell options for exec.
- */
-function getShellOptions(): { shell: string } {
-    return { shell: process.platform === "win32" ? "cmd.exe" : "/bin/sh" };
-}
+const VALID_PACKAGE_NAME = /^@?[a-zA-Z0-9][\w.\-/]*$/;
 
 export const pluginCommand = new Command("plugin")
     .description("Manage OSN plugins");
@@ -70,9 +65,13 @@ pluginCommand
         const spinner = ora(`Installing ${chalk.cyan(packageName)}...`).start();
 
         try {
-            await execAsync(`pnpm add ${packageName}`, {
+            if (!VALID_PACKAGE_NAME.test(packageName)) {
+                spinner.fail(`Invalid package name: ${chalk.red(packageName)}`);
+                return;
+            }
+
+            await execFileAsync("pnpm", ["add", packageName], {
                 cwd: process.cwd(),
-                ...getShellOptions(),
             });
             spinner.succeed(`${chalk.cyan(packageName)} installed successfully.`);
 
@@ -84,9 +83,10 @@ pluginCommand
                 if (pluginDef && typeof pluginDef === "object" && pluginDef.name) {
                     isValidPlugin = true;
                 }
-            } catch {
-                // Import may fail in monorepo context, still register
-                isValidPlugin = true;
+            } catch (importErr) {
+                // Import may fail in monorepo context, but we should not blindly approve it.
+                // Leave isValidPlugin as false so the warning is shown.
+                logger.debug(`Could not import newly added plugin: ${importErr instanceof Error ? importErr.message : String(importErr)}`);
             }
 
             if (!isValidPlugin) {
@@ -153,9 +153,13 @@ pluginCommand
         const spinner = ora(`Removing ${chalk.cyan(packageName)}...`).start();
 
         try {
-            await execAsync(`pnpm remove ${packageName}`, {
+            if (!VALID_PACKAGE_NAME.test(packageName)) {
+                spinner.fail(`Invalid package name: ${chalk.red(packageName)}`);
+                return;
+            }
+
+            await execFileAsync("pnpm", ["remove", packageName], {
                 cwd: process.cwd(),
-                ...getShellOptions(),
             });
             spinner.succeed(`${chalk.cyan(packageName)} removed successfully.`);
 

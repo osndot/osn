@@ -5,18 +5,13 @@ import { exec } from "node:child_process";
 import { promisify } from "node:util";
 import { loadConfig } from "../core/config.js";
 import { loadPlugins } from "../core/plugin-loader.js";
+import { getPlugins, setPlugins } from "../core/plugin-registry.js";
 import { logger } from "../utils/logger.js";
+import { getShellOptions } from "../utils/shell.js";
 import type { ProjectConfig } from "../core/config.js";
 import type { LoadedPlugin } from "../core/plugin-loader.js";
 
 const execAsync = promisify(exec);
-
-/**
- * Get platform-appropriate shell options for exec.
- */
-function getShellOptions(): { shell: string } {
-    return { shell: process.platform === "win32" ? "cmd.exe" : "/bin/sh" };
-}
 
 /**
  * Resolve and execute task dependencies recursively.
@@ -135,11 +130,15 @@ export const runCommand = new Command("run")
                 return;
             }
 
-            // Load plugins
-            const plugins = await loadPlugins();
-
             // Check if task exists in project config
             const task = config.tasks?.[taskName];
+
+            // Load plugins via registry or fallback
+            let plugins = getPlugins();
+            if (plugins.length === 0) {
+                plugins = await loadPlugins(process.cwd(), config.plugins);
+                setPlugins(plugins);
+            }
 
             if (!task) {
                 // Check plugin commands

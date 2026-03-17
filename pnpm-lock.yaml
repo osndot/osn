@@ -35,6 +35,9 @@ importers:
 
   packages/osn:
     dependencies:
+      '@osndot/sdk':
+        specifier: workspace:*
+        version: link:../sdk
       chalk:
         specifier: ^5.4.1
         version: 5.6.2
@@ -93,22 +96,6 @@ importers:
       '@types/node':
         specifier: ^22.13.4
         version: 22.19.15
-
-  test-workspace:
-    dependencies:
-      '@osndot/plugin-docker':
-        specifier: ^0.1.0
-        version: 0.1.0
-      '@osndot/plugin-env':
-        specifier: ^0.1.0
-        version: 0.1.0
-      '@osndot/plugin-git':
-        specifier: ^0.1.0
-        version: 0.1.0
-    devDependencies:
-      '@osndot/osn':
-        specifier: ^0.1.0
-        version: 0.1.0(@types/node@22.19.15)
 
 packages:
 
@@ -469,23 +456,6 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
-
-  '@osndot/osn@0.1.0':
-    resolution: {integrity: sha512-snhoYYxi3dURBD9sAGDv4YGPWdjHCXYSA7ulYhmY76FaYFsQbxWUkmhLusW9St0QBdULtuQri8viFjQnTZRNqA==}
-    engines: {node: '>=20.0.0'}
-    hasBin: true
-
-  '@osndot/plugin-docker@0.1.0':
-    resolution: {integrity: sha512-6ibokp98V6i55boaKsj1dGTgs8Ap03UCU+iUKB5DoZUD/wK3lv/9HOaHF2pnxoHm4tkenJ9faxN+6wexBvn2nA==}
-    engines: {node: '>=20.0.0'}
-
-  '@osndot/plugin-env@0.1.0':
-    resolution: {integrity: sha512-8hw5JJw37/fWFFuv5D9ffAdproiBi/FoM8oU9G0cqh4XdSbv2J8Bkch7nj4+7/MtoApjWoeGPPI5I0Q1wl63ng==}
-    engines: {node: '>=20.0.0'}
-
-  '@osndot/plugin-git@0.1.0':
-    resolution: {integrity: sha512-4SLmTcfv2daXheV9Tm8CR0CNjaXNEp4Pny2qb1d/FxpT7BpLOi2FnBzZx933ILFvXG5dcagFIXZYK/HKFyp6AA==}
-    engines: {node: '>=20.0.0'}
 
   '@rollup/rollup-android-arm-eabi@4.59.0':
     resolution: {integrity: sha512-upnNBkA6ZH2VKGcBj9Fyl9IGNPULcjXRlg0LLeaioQWueH30p6IXtJEbKAgvyv+mJaMxSm1l6xwDXYjpEMiLMg==}
@@ -1741,29 +1711,6 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
-
-  '@osndot/osn@0.1.0(@types/node@22.19.15)':
-    dependencies:
-      chalk: 5.6.2
-      commander: 13.1.0
-      consola: 3.4.2
-      inquirer: 12.11.1(@types/node@22.19.15)
-      ora: 8.2.0
-      zod: 3.25.76
-    transitivePeerDependencies:
-      - '@types/node'
-
-  '@osndot/plugin-docker@0.1.0':
-    dependencies:
-      '@osndot/sdk': link:packages/sdk
-
-  '@osndot/plugin-env@0.1.0':
-    dependencies:
-      '@osndot/sdk': link:packages/sdk
-
-  '@osndot/plugin-git@0.1.0':
-    dependencies:
-      '@osndot/sdk': link:packages/sdk
 
   '@rollup/rollup-android-arm-eabi@4.59.0':
     optional: true

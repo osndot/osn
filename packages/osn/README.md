@@ -13,7 +13,7 @@
 ## Installation
 
 ```bash
-npm install -g @osndot/osn
+pnpm add -g @osndot/osn
 ```
 
 ## Usage

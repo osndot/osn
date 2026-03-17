@@ -11,7 +11,7 @@
 ## Installation
 
 ```bash
-npm install -D @osndot/sdk
+pnpm add -D @osndot/sdk
 ```
 
 ## Usage

@@ -2,6 +2,7 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { existsSync } from "node:fs";
 import { z } from "zod";
+import { OSN_DIR, CONFIG_FILE } from "./constants.js";
 
 // ─── Zod Schemas ───
 
@@ -38,9 +39,6 @@ export type PluginEntry = z.infer<typeof pluginEntrySchema>;
 export type TaskDefinition = z.infer<typeof taskDefinitionSchema>;
 
 // ─── Config Loader ───
-
-const OSN_DIR = ".osn";
-const CONFIG_FILE = "project.json";
 
 /**
  * Load and validate .osn/project.json from the current working directory.

@@ -1,14 +1,11 @@
-import { describe, it, expect, beforeEach, afterEach } from "vitest";
-import { mkdir, writeFile, rm, readFile } from "node:fs/promises";
-import { join } from "node:path";
-import { tmpdir } from "node:os";
-import { existsSync } from "node:fs";
+import { describe, it, expect } from "vitest";
+import type { OsnPlugin } from "@osndot/sdk";
 import plugin from "../index.js";
 
 describe("@osndot/plugin-env", () => {
     it("should have correct metadata", () => {
         expect(plugin.name).toBe("@osndot/plugin-env");
-        expect(plugin.version).toBe("0.1.0");
+        expect(plugin.version).toBe("0.2.0");
         expect(plugin.description).toBe("Environment configuration management for OSN");
     });
 
@@ -25,6 +22,10 @@ describe("@osndot/plugin-env", () => {
         for (const cmd of plugin.commands!) {
             expect(cmd.description).toBeTruthy();
         }
+    });
+
+    it("should have _setConfig function from SDK", () => {
+        expect(typeof (plugin as OsnPlugin)._setConfig).toBe("function");
     });
 
     it("should have handlers for all commands", () => {

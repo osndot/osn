@@ -5,8 +5,9 @@ import { runCommand } from "./commands/run.js";
 import { pluginCommand } from "./commands/plugin.js";
 import { infoCommand } from "./commands/info.js";
 import { loadPlugins } from "./core/plugin-loader.js";
-import { logger, setLogLevel } from "./utils/logger.js";
-import type { LoadedPlugin } from "./core/plugin-loader.js";
+import { loadConfig } from "./core/config.js";
+import { setPlugins, getPlugins } from "./core/plugin-registry.js";
+import { logger, setLogLevel, printBanner } from "./utils/logger.js";
 
 const require = createRequire(import.meta.url);
 const pkg = require("../package.json");
@@ -14,7 +15,7 @@ const pkg = require("../package.json");
 const program = new Command();
 
 // Track loaded plugins for cleanup
-let activePlugins: LoadedPlugin[] = [];
+let activePlugins = getPlugins();
 
 program
     .name("osn")
@@ -46,7 +47,9 @@ program.exitOverride();
  */
 async function registerPluginCommands(): Promise<void> {
     try {
-        const plugins = await loadPlugins();
+        const config = await loadConfig();
+        const plugins = await loadPlugins(process.cwd(), config?.plugins);
+        setPlugins(plugins);
         activePlugins = plugins;
 
         for (const plugin of plugins) {
@@ -109,7 +112,9 @@ async function handleExit(): Promise<void> {
 }
 
 process.on("beforeExit", () => {
-    void handleExit();
+    handleExit().catch((err) => {
+        logger.debug(`Cleanup failed: ${err instanceof Error ? err.message : String(err)}`);
+    });
 });
 
 process.on("SIGINT", async () => {
@@ -124,6 +129,15 @@ process.on("SIGTERM", async () => {
 
 async function main(): Promise<void> {
     try {
+        // Show banner if not requesting help or version
+        const args = process.argv.slice(2);
+        const shouldShowBanner = !args.some(
+            (a) => a === "-h" || a === "--help" || a === "-v" || a === "--version"
+        );
+        if (shouldShowBanner) {
+            printBanner(pkg.version);
+        }
+
         // Register plugin commands before parsing
         await registerPluginCommands();
         await program.parseAsync(process.argv);

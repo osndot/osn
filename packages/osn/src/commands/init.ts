@@ -5,10 +5,8 @@ import { mkdir } from "node:fs/promises";
 import { join, resolve } from "node:path";
 import { existsSync } from "node:fs";
 import { writeConfigSafe } from "../core/config-writer.js";
+import { OSN_DIR, CONFIG_FILE } from "../core/constants.js";
 import { logger } from "../utils/logger.js";
-
-const OSN_DIR = ".osn";
-const PROJECT_CONFIG_FILE = "project.json";
 
 interface InitOptions {
     name?: string;
@@ -22,7 +20,7 @@ export const initCommand = new Command("init")
     .action(async (options: InitOptions) => {
         const cwd = process.cwd();
         const osnDir = join(cwd, OSN_DIR);
-        const configPath = join(osnDir, PROJECT_CONFIG_FILE);
+        const configPath = join(osnDir, CONFIG_FILE);
 
         // Check if already initialized
         if (existsSync(configPath)) {
@@ -65,7 +63,7 @@ export const initCommand = new Command("init")
 
             // Create project.json
             const config = {
-                $schema: "https://osndot.dev/schemas/project.json",
+                $schema: "./node_modules/@osndot/osn/schemas/project.schema.json",
                 name: projectName,
                 version: "0.1.0",
                 plugins: [],

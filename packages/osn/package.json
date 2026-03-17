@@ -1,6 +1,6 @@
 {
     "name": "@osndot/osn",
-    "version": "0.1.2",
+    "version": "0.2.0",
     "description": "OSN — Modern, plugin-driven developer runtime and CLI platform",
     "author": "osndot",
     "license": "MIT",
@@ -36,6 +36,7 @@
         "lint": "tsc --noEmit"
     },
     "dependencies": {
+        "@osndot/sdk": "workspace:*",
         "commander": "^13.1.0",
         "chalk": "^5.4.1",
         "ora": "^8.2.0",

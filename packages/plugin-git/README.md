@@ -23,7 +23,7 @@ osn plugin add git
 Once installed, the following commands are instantly available:
 
 - `osn git status` - Show a short, summarized status of the working tree.
-- `osn git log` - Show the 5 most recent commit logs in a concise format.
+- `osn git log` - Show the 10 most recent commit logs in a concise format.
 
 ## Documentation
 

@@ -18,7 +18,7 @@ A JSON Schema file is distributed with the `@osndot/osn` package for IDE autocom
   "plugins": [
     {
       "name": "@osndot/plugin-git",
-      "version": "0.1.0"
+      "version": "0.2.0"
     }
   ],
   "tasks": {
@@ -105,11 +105,11 @@ Example:
 "plugins": [
   {
     "name": "@osndot/plugin-git",
-    "version": "0.1.0"
+    "version": "0.2.0"
   },
   {
     "name": "@osndot/plugin-env",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "config": {
       "defaultFile": ".env.local"
     }

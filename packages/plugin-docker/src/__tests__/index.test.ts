@@ -1,10 +1,11 @@
 import { describe, it, expect } from "vitest";
+import type { OsnPlugin } from "@osndot/sdk";
 import plugin from "../index.js";
 
 describe("@osndot/plugin-docker", () => {
     it("should have correct metadata", () => {
         expect(plugin.name).toBe("@osndot/plugin-docker");
-        expect(plugin.version).toBe("0.1.0");
+        expect(plugin.version).toBe("0.2.0");
         expect(plugin.description).toBe("Docker integration for OSN");
     });
 
@@ -21,6 +22,10 @@ describe("@osndot/plugin-docker", () => {
         for (const cmd of plugin.commands!) {
             expect(cmd.description).toBeTruthy();
         }
+    });
+
+    it("should have _setConfig function from SDK (runtime test)", () => {
+        expect(typeof (plugin as OsnPlugin)._setConfig).toBe("function");
     });
 
     it("should have handlers for all commands", () => {

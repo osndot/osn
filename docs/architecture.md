@@ -196,8 +196,9 @@ If validation fails, a warning is displayed but the package remains installed.
 Triggered on push and pull requests to `main`. Runs on Node.js 20 and 22:
 - Install dependencies
 - Build all packages
-- Run the test suite
+- Lint all source files
 - Type check all packages
+- Run the test suite
 
 ### Release (`release.yml`)
 
@@ -227,9 +228,12 @@ osn/
 │   │   │   ├── core/
 │   │   │   │   ├── config.ts           # Zod schema + loader
 │   │   │   │   ├── config-writer.ts    # Atomic config writes
-│   │   │   │   └── plugin-loader.ts    # Dynamic plugin discovery
+│   │   │   │   ├── constants.ts        # Shared constants (OSN_DIR, CONFIG_FILE)
+│   │   │   │   ├── plugin-loader.ts    # Dynamic plugin discovery
+│   │   │   │   └── plugin-registry.ts  # In-memory plugin singleton registry
 │   │   │   └── utils/
-│   │   │       └── logger.ts           # Consola + Chalk logger
+│   │   │       ├── logger.ts           # Consola + Chalk logger
+│   │   │       └── shell.ts            # Platform-aware shell options
 │   │   ├── schemas/
 │   │   │   └── project.schema.json     # JSON Schema for project.json
 │   │   ├── tsup.config.ts

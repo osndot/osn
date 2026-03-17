@@ -14,6 +14,8 @@ export interface PluginCommand {
     options?: PluginCommandOption[];
     /** The handler function invoked when the command is executed */
     handler: (args?: Record<string, unknown>) => Promise<void> | void;
+    /** @internal Used by CLI core to trace commands back to their plugin */
+    pluginName?: string;
 }
 
 export interface PluginCommandArgument {
@@ -80,6 +82,8 @@ export interface OsnPlugin {
     onAfterTask?: LifecycleHooks["onAfterTask"];
     /** @internal Used by CLI core to resolve async plugin setups */
     _setupPromise?: Promise<void>;
+    /** @internal Used by CLI core to inject plugin config */
+    _setConfig?: (config: Record<string, unknown>) => void;
 }
 
 /**

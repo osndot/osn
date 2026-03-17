@@ -1,6 +1,6 @@
 {
     "name": "@osndot/plugin-env",
-    "version": "0.1.2",
+    "version": "0.2.0",
     "description": "Environment configuration management plugin for the OSN CLI platform",
     "author": "osndot",
     "license": "MIT",
@@ -33,6 +33,9 @@
     },
     "dependencies": {
         "@osndot/sdk": "workspace:*"
+    },
+    "peerDependencies": {
+        "@osndot/sdk": ">=0.1.0"
     },
     "devDependencies": {
         "@types/node": "^22.13.4"

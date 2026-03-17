@@ -23,7 +23,7 @@ osn plugin add docker
 Once installed, the following commands are instantly available:
 
 - `osn docker ps` - List currently running Docker containers.
-- `osn docker build` - Quickly build a Docker image named after the current directory.
+- `osn docker build` - Build a Docker image using the configured `imageName` (defaults to `osn-app`).
 
 ## Documentation
 
