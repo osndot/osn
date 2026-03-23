@@ -2,3 +2,4 @@ packages:
   - "packages/osn"
   - "packages/sdk"
   - "packages/plugin-*"
+  - "website"
